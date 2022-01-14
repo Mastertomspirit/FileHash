@@ -1,3 +1,10 @@
+# Individual files...
+
+.project
+.classpath
+bin/
+.settings/
+
 # Compiled class file
 *.class
 
