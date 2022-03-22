@@ -61,7 +61,7 @@ class Controller implements ActionListener, MouseListener {
 		
 		if(e.getSource() == gui.getStartHashingButton()) {
 			if(path != null) {
-				String hashInput = gui.getHashInputField().getText().trim();
+				String hashInput = gui.getHashInputField().getText().trim().toLowerCase();
 				String hashOutput = model.getHash(path, gui.getAlgorithm().getValue());
 				if(hashInput.length() != hashOutput.length())		gui.getHashInputField().setText("			Falscher Eingabe Hash");
 				gui.setOutputLabelGiven(hashInput);

@@ -23,7 +23,7 @@ package de.spiritscorp.FileHash;
 /**
  * 	@author		Tom Spirit
  * 	@date		01/2021
- *	@version	1.0.0.0
+ *	@version	1.0.1
  *
  */
 public class Main {
