@@ -22,6 +22,7 @@ import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,6 +61,7 @@ class Controller implements ActionListener, MouseListener {
 		}
 		
 		if(e.getSource() == gui.getStartHashingButton()) {
+			gui.setCopiedLabel("");
 			if(path != null) {
 				String hashInput = gui.getHashInputField().getText().trim().toLowerCase();
 				String hashOutput = model.getHash(path, gui.getAlgorithm().getValue());
@@ -93,6 +95,12 @@ class Controller implements ActionListener, MouseListener {
 				gui.getPopup().setLocation(e.getXOnScreen() + 15, e.getYOnScreen() + 15);
 				gui.getPopup().setVisible(true);
 			}
+		}
+		if(e.getSource() == gui.getOutputLabel()) {
+			Clipboard clip = Toolkit.getDefaultToolkit().getSystemClipboard();
+			StringSelection str = new StringSelection(gui.getOutputLabel().getText());
+			clip.setContents(str, null);
+			gui.setCopiedLabel("In die Zwischenablabe kopiert");
 		}
 	}
 	@Override

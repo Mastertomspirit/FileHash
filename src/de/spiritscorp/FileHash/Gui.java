@@ -50,7 +50,7 @@ class Gui extends JFrame {
 	private Controller controller;
 	private JButton startHashingButton, fileChooseButton;
 	private JComboBox<Algorithm> algoBox;
-	private JLabel algoInfoLabel, shaInfoLabel, outputLabel, checkPic, outputLabelGiven, fileInfoLabel, fileChooseLabel, versionInfoLabel;
+	private JLabel algoInfoLabel, shaInfoLabel, outputLabel, copiedLabel, checkPic, outputLabelGiven, fileInfoLabel, fileChooseLabel, versionInfoLabel;
 	private JTextField hashInputField;
 	private JMenuItem paste, delete;
 	private JPopupMenu popup;
@@ -59,6 +59,7 @@ class Gui extends JFrame {
 	private ImageIcon waiting = new ImageIcon(getClass().getClassLoader().getResource("resources/my_computer_icon-128.png"));
 	private Font font = new Font("Comic Sans MS", 1, 13);
 	private Color fgColor = Color.white;
+	private Color okColor = Color.green;
 
 	public static final int WIDTH = 1100;
 	public static final int HEIGHT = 640;
@@ -91,7 +92,7 @@ class Gui extends JFrame {
 		fileInfoLabel.setForeground(fgColor);
 		getContentPane().add(fileInfoLabel);
 		
-		fileChooseLabel = new JLabel("C:\\Tom Spirit\\Downloads");
+		fileChooseLabel = new JLabel("Downloads:");
 		fileChooseLabel.setBounds(333, 161, 433, 35);
 		fileChooseLabel.setFont(font);
 		fileChooseLabel.setForeground(fgColor);
@@ -156,8 +157,17 @@ class Gui extends JFrame {
 		outputLabel.setBounds(10, 460, 1064, 35);
 		outputLabel.setFont(font);
 		outputLabel.setForeground(fgColor);
+		outputLabel.addMouseListener(controller);
 		getContentPane().add(outputLabel);
-				
+		
+		copiedLabel = new JLabel();
+		copiedLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		copiedLabel.setAlignmentX(0.5f);
+		copiedLabel.setBounds(210, 490, 664, 35);
+		copiedLabel.setFont(font.deriveFont(3));
+		copiedLabel.setForeground(okColor);
+		getContentPane().add(copiedLabel);
+		
 		startHashingButton = new JButton("Prüfsumme berechnen");
 		startHashingButton.setBounds(888, 506, 186, 35);
 		startHashingButton.addActionListener(controller);
@@ -178,7 +188,7 @@ class Gui extends JFrame {
 		algoBox.addMouseListener(controller);
 		getContentPane().add(algoBox);
 		
-		versionInfoLabel = new JLabel("V 1.0.0 FileHash    @TomSpirit");
+		versionInfoLabel = new JLabel("V 1.1.0 FileHash    @TomSpirit");
 		versionInfoLabel.setFont(font.deriveFont(10f));
 		versionInfoLabel.setBackground(null);
 		versionInfoLabel.setForeground(Color.gray);
@@ -193,6 +203,10 @@ class Gui extends JFrame {
        SwingUtilities.updateComponentTreeUI(this);
 	}
 	
+	void setCopiedLabel(String str) {
+		copiedLabel.setText(str);
+	}
+
 	void setConfirmIcon(boolean valid) {
 		if(valid) checkPic.setIcon(checkOk);
 		else checkPic.setIcon(checkNonOk);
@@ -214,6 +228,9 @@ class Gui extends JFrame {
 	}
 	JTextField getHashInputField() {
 		return hashInputField;
+	}
+	JLabel getOutputLabel() {
+		return outputLabel;
 	}
 	JButton getStartHashingButton() {
 		return startHashingButton;
