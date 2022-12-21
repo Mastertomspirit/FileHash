@@ -10,11 +10,11 @@ From MD5 till SHA3-512
 ```
 jlink --module-path "%JAVA_HOME%\jmods" --add-modules java.desktop --compress=2 --output customjre
 
-jpackage.exe -t app-image --main-jar FileHash-1.0.2.jar -n FileHash --verbose -i D:\DataSync\nativ-image --runtime-image D:\DataSync\customjre\
+jpackage.exe -t app-image --main-jar FileHash-1.0.2.jar -n FileHash --verbose -i D:\fileDir --runtime-image D:\customjre\
 ```
 
 or
 
 ``` 
-jpackage.exe -t app-image --main-jar FileHash-1.0.2.jar -n FileHash --verbose -i D:\DataSync\nativ-image  
+jpackage.exe -t app-image --main-jar FileHash-1.0.2.jar -n FileHash --verbose -i D:\fileDir  
 ```
