@@ -23,7 +23,7 @@ enum Algorithm {
 	MD5 ("MD5"),
 	SHA ("SHA"),
 	SHA256 ("SHA-256"),
-	SHA384 ("SHA384"),
+	SHA384 ("SHA-384"),
 	SHA512 ("SHA-512"), 
 	SHA3_256 ("SHA3-256"),
 	SHA3_384 ("SHA3-384"),
