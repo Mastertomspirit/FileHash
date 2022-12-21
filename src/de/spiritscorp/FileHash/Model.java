@@ -36,6 +36,7 @@ class Model {
 	String getHash(Path destPath, String algorithm){
 		MessageDigest messageDigest;
 		StringBuffer sb = new StringBuffer();
+		long start = System.nanoTime();
 		try(InputStream is = Files.newInputStream(destPath)){
 			messageDigest = MessageDigest.getInstance(algorithm);
 			byte[] input;
@@ -44,10 +45,19 @@ class Model {
 				messageDigest.update(input);
 			}
 			byte[] digest = messageDigest.digest();
+			System.out.println(getEndTimeFormatted(System.nanoTime() - start));
 			for(byte b : digest) {
 				sb.append(Integer.toString((b&0xff) + 0x100,16).substring(1));
 			}
 		}catch(IOException | NoSuchAlgorithmException e) {e.printStackTrace();}
 		return sb.toString();
+	}
+	
+	
+	private String getEndTimeFormatted(long endTime) {
+		double endTimeSec = ((double) endTime) / 1000000000;		
+		return (endTimeSec <= 60) ? 
+				String.valueOf(endTimeSec) + " Sekunden Laufzeit" : 
+				String.format("%d Minuten und %.3f Sekunden Laufzeit", ((int) endTimeSec) / 60, endTimeSec % 60 );
 	}
 }
